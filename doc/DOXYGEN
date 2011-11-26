@@ -1,0 +1,10 @@
+In order to generate complete documentation for this project, please run:
+  doxygen BoardGames.doxygen
+
+Or (from inside the /src directory):
+  make with-doxy
+
+From this directory.  Navigate in your web browser to:
+  file:///$(ROOT_PATH)/doc/html/index.html
+
+Or view the output generated in the latex/ subdirectory.

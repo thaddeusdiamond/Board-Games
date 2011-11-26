@@ -1,0 +1,15 @@
+Board Games
+(c) 2011 Thaddeus Diamond
+Yale University
+
+Compilation
+===========
+To compile the source, please run:
+    $ make -C src
+
+Three directories will be created: bin/, obj/ and logs/.
+
+Running the Demo
+================
+// TODO(Thad): Tell how to run each individual program once the programs
+// are able to be executed.
