@@ -24,7 +24,7 @@ namespace BoardGames {
   /**
    * @namespace BoardGames::Configuration
    * @brief     The current configuration in regards to which games supported
-   * 
+   *
    * Creating a configuration namespace nested inside of the BoardGames
    * framework allows us to create dynamic support for new games and rules
    * without having to rework any existing code.
@@ -38,14 +38,21 @@ namespace BoardGames {
      * are initialized.  These will define the choices in those switches.
      **/
     enum GameType {
-      ALL_GAMES = 0,
+      TIC_TAC_TOE = 0,
+      SUDOKU      = 1,
+      ALL_GAMES   = 2,
     };
+
+    /** @todo Here we should also enumerate the game types in an iterable
+     *        container so that we can make buttons, etc. **/
 
     /**
      * We define a static list of window titles based on what option was
      * selected for fast switching
      **/
     static const string GameTitles[] = {
+      "Tic-Tac-Toe",
+      "Sudoku",
       "All Sorts of Games!",
     };
 
