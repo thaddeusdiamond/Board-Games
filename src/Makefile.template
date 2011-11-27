@@ -1,0 +1,47 @@
+# Build files only if they exist.
+$(UPPERC_DIR)_SRCS := $(wildcard $($(UPPERC_DIR)_SRCS))
+$(UPPERC_DIR)_OBJS := $(patsubst %.cpp, $(OBJDIR)/%.o, $($(UPPERC_DIR)_SRCS))
+ifneq ($(EXECUTABLE),)
+  $(UPPERC_DIR)_DEPLOY := $(BINDIR)/$(EXECUTABLE)
+else
+  $(UPPERC_DIR)_DEPLOY := 
+endif
+
+$(UPPERC_DIR)_TEST_SRCS := $(wildcard $(LOWERC_DIR)/*unit_test.cpp)
+$(UPPERC_DIR)_TEST_OBJS := $(patsubst %.cpp, $(OBJDIR)/%.o, $($(UPPERC_DIR)_TEST_SRCS))
+$(UPPERC_DIR)_TESTS     := $(patsubst %.cpp, $(BINDIR)/%, $($(UPPERC_DIR)_TEST_SRCS))
+
+# Makeable directives (i.e. "make all")
+all: $(LOWERC_DIR)-all
+$(LOWERC_DIR)-all: $(LOWERC_DIR) $(LOWERC_DIR)-obj $(LOWERC_DIR)-tests
+$(LOWERC_DIR): $($(UPPERC_DIR)_DEPLOY)
+$(LOWERC_DIR)-obj: $($(UPPERC_DIR)_OBJS)
+$(LOWERC_DIR)-tests: $($(UPPERC_DIR)_TESTS)
+
+# Standard object files and test scripts that each directory must have
+$(OBJDIR)/$(LOWERC_DIR)/%.o: $(LOWERC_DIR)/%.cpp $(SRC_LINKED_OBJECTS)
+	@echo + cxx $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) $(CXXFLAGS) $(MDFLAGS) -o $@ -c $<
+
+$(OBJDIR)/$(LOWERC_DIR)/%unit_test.o: $(LOWERC_DIR)/%unit_test.cpp
+	@echo + cxx $<
+	@mkdir -p $(@D)
+	$(V)$(CXX) $(CXXFLAGS) $(MDFLAGS) -o $@ -c $<
+
+$(BINDIR)/$(LOWERC_DIR)/%unit_test: $($(UPPERC_DIR)_TEST_OBJS) \
+                                    $($(UPPERC_DIR)_OBJS) $(EXTRA_TEST_OBJS)
+	@echo + ld $@
+	@mkdir -p $(@D)
+	@mkdir -p $(patsubst $(BINDIR)%, $(LOGDIR)%, $(@D))
+	$(V)$(CXX) -o $@ $^ $(LDFLAGS)
+
+ifneq ($(EXECUTABLE),)
+  $(BINDIR)/$(EXECUTABLE): $(EXECUTABLE_SRCS) $(EXECUTABLE_OBJS) \
+                           $($(UPPERC_DIR)_OBJS)
+	  @echo + ld $@
+	  @mkdir -p $(@D)
+	  $(V)$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
+endif
+
+.PHONY: $(LOWERC_DIR)-all $(LOWERC_DIR) $(LOWERC_DIR)-tests test-$(LOWERC_DIR)

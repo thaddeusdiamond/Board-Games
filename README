@@ -43,6 +43,7 @@ Prerequisites
 =============
   - GNU/Linux distro >= 2.6.37.6
   - G++ >= 4.5.1
+  - GTKMM >= 3.2.1
   - Satisfy all dependencies of the following external libraries
       * GoogleTest      - Google's Unit Testing Framework
 
