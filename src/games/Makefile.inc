@@ -3,7 +3,7 @@ OBJDIRS += games
 TESTS += games-test
 
 # relative to $(TOP), i.e. $(LOWERC_DIR)/*.cc
-WINDOW_LEARNER_SRCS :=
+GAMES_SRCS := games/game_factory.cpp games/game_builder.cpp
 
 # Set makefile template specific vars
 UPPERC_DIR := GAMES
@@ -11,9 +11,9 @@ LOWERC_DIR := games
 
 EXTRA_TEST_OBJS :=
 
-EXECUTABLE := TheGame
-EXECUTABLE_SRCS := games/the_game.cpp
-EXECUTABLE_OBJS := $(APPLICATION_OBJS) $(WINDOW_OBJS)
+EXECUTABLE :=
+EXECUTABLE_SRCS := 
+EXECUTABLE_OBJS :=
 
 include $(MAKEFILE_TEMPLATE)
 

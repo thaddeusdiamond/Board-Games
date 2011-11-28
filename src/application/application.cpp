@@ -11,37 +11,64 @@
 
 #include "application/application.hpp"
 
-using BoardGames::Application;
+BoardGames::Application* BoardGames::Application::application_instance_ = NULL;
 
-Application* Application::application_instance_ = NULL;
-
-Application* Application::GetApplicationInstance() {
+BoardGames::Application* BoardGames::Application::GetApplicationInstance() {
   if (application_instance_ == NULL)
     application_instance_ = new Application();
 
   return application_instance_;
 }
 
-Application::Application() {
+BoardGames::Application::Application() {
   active_windows_ = new Window*[MAXIMUM_WINDOWS];
+  for (int i = 0; i < MAXIMUM_WINDOWS; i++)
+    active_windows_[i] = NULL;
 }
 
-Application::~Application() {
-  delete[] active_windows_;
+BoardGames::Application::~Application() {
+  for (int i = 0; i < MAXIMUM_WINDOWS; i++)
+    delete active_windows_[i];
 }
 
-Window* Application::window(int index) {
+Window* BoardGames::Application::window(int index) {
   if (index > MAXIMUM_WINDOWS)
     return NULL;
 
   return active_windows_[index];
 }
 
-bool Application::InitializeApplication(GameType game) {
-  active_windows_[0] = new MainWindow(game);
-  for (int i = 1; i < MAXIMUM_WINDOWS; i++)
-    active_windows_[i] = NULL;
+void BoardGames::Application::add_window(Window* window) {
+  for (int i = 0; i < MAXIMUM_WINDOWS; i++) {
+    if (active_windows_[i] == NULL) {
+      active_windows_[i] = window;
+      window->show();
+      window->signal_delete_event().connect(
+          sigc::bind<0>(sigc::mem_fun(*this, &Application::remove_window), i));
+      break;
+    }
+  }
+}
 
-  // Invalid game was specified
+bool BoardGames::Application::remove_window(int index, GdkEventAny* event) {
+  if (index > MAXIMUM_WINDOWS)
+    return true;
+
+  if (active_windows_[index] != NULL)
+    delete active_windows_[index];
+  active_windows_[index] = NULL;
+
+  // Check if the last window was closed, if so exit
+  for (int i = 0; i < MAXIMUM_WINDOWS; i++) {
+    if (active_windows_[i] != NULL)
+      return false;
+  }
+
+  Gtk::Main::quit();
   return false;
+}
+
+bool BoardGames::Application::InitializeApplication(GameType game) {
+  add_window(WindowFactory::CreateFromGameType(game));
+  return true;
 }

@@ -15,14 +15,18 @@
 #ifndef _BOARDGAMES_APPLICATION_APPLICATION_HPP_
 #define _BOARDGAMES_APPLICATION_APPLICATION_HPP_
 
-#include "configuration/configuration.hpp"
-#include "window/main_window.hpp"
+#include <gtkmm/main.h>
+#include <vector>
+#include <algorithm>
 
+#include "common/types.hpp"
+#include "window/window.hpp"
+#include "window/window_factory.hpp"
+
+using std::vector;
 using BoardGames::Window;
-using BoardGames::MainWindow;
-
-using BoardGames::Configuration::GameType;
-using BoardGames::Configuration::MAXIMUM_WINDOWS;
+using BoardGames::WindowFactory;
+using BoardGames::Types::GameType;
 
 /**
  * @namespace BoardGames
@@ -32,6 +36,11 @@ using BoardGames::Configuration::MAXIMUM_WINDOWS;
  * board game application.  It is the focus of this term project.
  **/
 namespace BoardGames {
+  /**
+   * We define the maximum number of windows an application has as a const
+   **/
+  static const int MAXIMUM_WINDOWS = 10;
+
   /**
    * @class Application
    * @brief The sole application context
@@ -55,7 +64,7 @@ namespace BoardGames {
      * the user to play based on the enumerated options above.
      *
      * @param     game      Which game we are initializing the application to
-     *                      play (enumerated in @ref Configuration::GameType)
+     *                      play (enum'd in Configuration::)
      *
      * @returns   True if the game was successfully initialized, false otherwise
      **/
@@ -70,6 +79,24 @@ namespace BoardGames {
      *            exists at that window.
      **/
     Window* window(int index);
+
+    /**
+     * Adder method for private window variables.
+     *
+     * @param     window    The window that should be added
+     **/
+    void add_window(Window* window);
+
+    /**
+     * Delete method for private window variables.
+     *
+     * @param     index     The index of the window to be removed
+     * @param     event     Standard GTKMM event
+     *
+     * @returns   False always.  This is used in signal propagation (called
+     *            when window is exited out of)
+     **/
+    bool remove_window(int index, GdkEventAny* event);
 
    private:
     /**
@@ -93,8 +120,7 @@ namespace BoardGames {
     static Application* application_instance_;
 
     /**
-     * We define a dynamic array of windows that the application can use (up
-     * to a predefined maximum).
+     * We define a dynamic array of windows that the application can use
      **/
     Window** active_windows_;
   };

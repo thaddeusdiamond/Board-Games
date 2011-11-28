@@ -9,38 +9,43 @@
  * Implementation of a game's main window
  **/
 
+#include "application/application.hpp"
 #include "window/main_window.hpp"
+#include "games/game_factory.hpp"
+#include "window/window_factory.hpp"
 
-using BoardGames::MainWindow;
+using BoardGames::GameFactory;
+using BoardGames::WindowFactory;
 
-MainWindow::MainWindow(GameType application_game) : canvas_() {
-  // Set basic trimmings (height, width, border, yada yada...)
-  set_title(BoardGames::Configuration::GameTitles[application_game]);
-  set_border_width(10);
-//  canvas_.set_size_request(application_game == ALL_GAMES ? 300 : 100, 400);
+BoardGames::MainWindow::MainWindow() {
+  // Set the basics up
+  set_title("Board Game Demo");
+  set_border_width(WINDOW_PADDING);
+
+  // Retrieve the total games from the generic GameFactory
+  buttons_ = GameFactory::CreateGameChoices(this);
+
+  vertical_layout_ = new VBox();
+  vertical_layout_->set_size_request(300, (buttons_.size() + 1) * 50);
+
+  // Set the program header
+  header_label_ = new Label("Please Select A Game...");
+  vertical_layout_->pack_start(*header_label_);
 
   // Add the buttons to select the correct games
-  for (int game = 0; game < static_cast<int>(ALL_GAMES); game++) {
-    if (game == static_cast<int>(application_game) ||
-        application_game == ALL_GAMES) {
-      Button* game_button = new Button(GameTitles[game].c_str());
-      game_button->signal_clicked().connect(
-          sigc::bind<GameType>(sigc::mem_fun(*this, &MainWindow::GameSelected),
-                               static_cast<GameType>(game)));
-
-      /** @todo Here we need to use pack_start and a GtkBox **/
-      buttons_.push_back(game_button);
-      add(*game_button);
-    }
+  vector<Button*>::iterator it;
+  for (it = buttons_.begin(); it < buttons_.end(); it++) {
+    vertical_layout_->pack_start(**it);
+    (*it)->show();
   }
 
+  add(*vertical_layout_);
   show_all_children();
 }
 
-MainWindow::~MainWindow() {}
+BoardGames::MainWindow::~MainWindow() {}
 
-void MainWindow::GameSelected(GameType selected_game) {
-  Window* dead_window = new Window();
-  dead_window->set_title(GameTitles[selected_game]);
-  dead_window->show();
+void BoardGames::MainWindow::GameSelected(GameType selected_game) {
+  BoardGames::Application::GetApplicationInstance()->add_window(
+    WindowFactory::CreateFromGameType(selected_game));
 }

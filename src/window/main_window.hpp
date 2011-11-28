@@ -14,19 +14,19 @@
 #define _BOARDGAMES_WINDOW_MAIN_WINDOW_HPP_
 
 #include <gtkmm/button.h>
-#include <gtkmm/drawingarea.h>
+#include <gtkmm/box.h>
+#include <gtkmm/label.h>
 #include <vector>
-#include <cstdio>
 
-#include "configuration/configuration.hpp"
+#include "common/types.hpp"
 #include "window/window.hpp"
 
 using std::vector;
 using Gtk::Button;
+using Gtk::VBox;
+using Gtk::Label;
 
-using BoardGames::Configuration::GameTitles;
-using BoardGames::Configuration::GameType;
-using BoardGames::Configuration::ALL_GAMES;
+using BoardGames::Types::GameType;
 
 /**
  * @namespace BoardGames
@@ -45,7 +45,7 @@ namespace BoardGames {
      * A constructor for a MainWindow initializes the buttons relevant to
      * that game
      **/
-    explicit MainWindow(GameType application_game);
+    explicit MainWindow();
 
     /**
      * The MainWindow destructor is responsible for freeing all widgets it
@@ -58,13 +58,18 @@ namespace BoardGames {
      *
      * @param   selected_game   Which button was selected/what game to launch
      **/
-    void GameSelected(GameType selected_game);
+    virtual void GameSelected(GameType selected_game);
 
    private:
     /**
-     * The MainWindow keeps track of the drawing area it is painted on
+     * The MainWindow keeps a vertical box layout to position buttons
      **/
-    Gtk::DrawingArea canvas_;
+    VBox* vertical_layout_;
+
+    /**
+     * The MainWindow keeps a label describing the games available
+     **/
+    Label* header_label_;
 
     /**
      * The MainWindow keeps track of a set of buttons available to be clicked

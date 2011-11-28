@@ -10,11 +10,14 @@
  * on what has been coded (which games, etc.)
  **/
 
-#ifndef _BOARDGAMES_CONFIGURATION_CONFIGURATION_HPP_
-#define _BOARDGAMES_CONFIGURATION_CONFIGURATION_HPP_
+#ifndef _BOARDGAMES_COMMON_CONFIGURATION_HPP_
+#define _BOARDGAMES_COMMON_CONFIGURATION_HPP_
 
 #include <string>
 
+#include "common/types.hpp"
+
+using BoardGames::Types::GameType;
 using std::string;
 
 /**
@@ -31,20 +34,26 @@ namespace BoardGames {
    **/
   namespace Configuration {
     /**
-     * @enum GameType
-     *
+     * Define how many games are currently available in total.
+     **/
+    static const int GAMES_AVAILABLE = 2;
+
+    /**
      * We define the available games by an enum that can be easily added to.
      * Runtime switches on pre-defined array stores will determine how windows
      * are initialized.  These will define the choices in those switches.
      **/
-    enum GameType {
+    enum {
       TIC_TAC_TOE = 0,
       SUDOKU      = 1,
       ALL_GAMES   = 2,
     };
 
-    /** @todo Here we should also enumerate the game types in an iterable
-     *        container so that we can make buttons, etc. **/
+    /** 
+     * Here we also enumerate the game types in an iterable
+     * container so that we can make buttons, etc.
+     **/
+    static const GameType GameTypes[] = { TIC_TAC_TOE, SUDOKU, ALL_GAMES };
 
     /**
      * We define a static list of window titles based on what option was
@@ -55,17 +64,7 @@ namespace BoardGames {
       "Sudoku",
       "All Sorts of Games!",
     };
-
-    /**
-     * The maximum number of windows we want to be open at any given time.
-     **/
-    static const int MAXIMUM_WINDOWS = 10;
-
-    /**
-     * Declare the maximum number of buttons any Window can have as a final (10)
-     **/
-    /// @todo REMOVE THIS -- static const int MAXIMUM_BUTTONS = 10;
   }
 }
 
-#endif  // _BOARDGAMES_CONFIGURATION_CONFIGURATION_HPP_
+#endif  // _BOARDGAMES_COMMON_CONFIGURATION_HPP_

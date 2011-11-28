@@ -20,14 +20,23 @@
  **/
 namespace BoardGames {
   /**
+   * All windows have a standard amount of padding
+   **/
+  static const int WINDOW_PADDING = 10;
+
+  /**
    * @class Window
    * @brief An inherited version of the GTK Window
    *
    * We create an extended version of a GTK window to allow for game-dependent
-   * decoration and runtime dispatching of user events via the Bridge DP
+   * decoration and runtime dispatching of user events via the Abstract Factory
+   * DP
    **/
   class Window : public Gtk::Window {
    public:
+    /**
+     * The Window constructor is responsible for initializing its contents
+     **/
     explicit Window() {}
 
     /**

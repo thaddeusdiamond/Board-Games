@@ -53,9 +53,11 @@ all:
 MAKEFILE_TEMPLATE := Makefile.template
 
 # Makefile fragments for library code
+include interface/Makefile.inc
 include window/Makefile.inc
 include application/Makefile.inc
 include games/Makefile.inc
+include deploy/Makefile.inc
 
 test: $(TESTS)
 
@@ -64,7 +66,7 @@ clean:
 
 #If they specify the use of doxy, then we make doxy first
 with-doxy:
-	@echo +doc $(DOXY_EXE) $(DOCDIR)/$(DOXY_CONF) \> $(DOCOUT)
+	@echo + doc $(DOXY_EXE) $(DOCDIR)/$(DOXY_CONF) \> $(DOCOUT)
 	@cd $(DOCDIR); $(DOXY_EXE) $(DOXY_CONF)
 	
 	

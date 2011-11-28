@@ -11,18 +11,18 @@
  **/
 
 #include <gtkmm/main.h>
+#include "common/configuration.hpp"
 #include "application/application.hpp"
-
-using BoardGames::Application;
 
 int main(int argc, char* argv[]) {
   Gtk::Main kit(argc, argv);
 
   // TheGame allows the user to play any game
-  Application* application = Application::GetApplicationInstance();
+  BoardGames::Application* application =
+    BoardGames::Application::GetApplicationInstance();
   application->InitializeApplication(BoardGames::Configuration::ALL_GAMES);
 
-  Gtk::Main::run(*application->window(0));
+  Gtk::Main::run();
 
   return 0;
 }
