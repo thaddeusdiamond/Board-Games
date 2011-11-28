@@ -12,7 +12,7 @@
 #include "window/game_window.hpp"
 
 BoardGames::GameWindow::GameWindow(string game_title, Label* header,
-                                   Board* board, VBox* options)
+                                   Board* board, Menu* options)
     : layout_(new VBox()), header_(header), board_(board), options_(options) {
   // Every game needs a board, otherwise exit
   if (board_ == NULL)

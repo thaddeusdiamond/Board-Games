@@ -14,8 +14,6 @@
 
 #include <gtkmm/togglebutton.h>
 
-using Gtk::ToggleButton;
-
 /**
  * @namespace BoardGames
  **/
@@ -27,7 +25,7 @@ namespace BoardGames {
    * This class represents a single tile on the game board (inherited from
    * a standard ToggleButton)
    **/
-  class Tile : public ToggleButton {
+  class Tile : public Gtk::ToggleButton {
     /** @todo    Add testing to Tile class **/
    public:
     /**

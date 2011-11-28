@@ -15,7 +15,6 @@
 #include <gtkmm/table.h>
 #include "interface/tile.hpp"
 
-using Gtk::Table;
 using BoardGames::Tile;
 
 /**
@@ -30,7 +29,7 @@ namespace BoardGames {
    **/
   /// @todo If there's time, should we make one more level for namespaces?
   ///       It would be based on the folder...
-  class Board : public Table {
+  class Board : public Gtk::Table {
     /** @todo    Add testing to Board class **/
    public:
     /**

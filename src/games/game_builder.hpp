@@ -14,18 +14,19 @@
 #ifndef _BOARDGAMES_GAMES_GAME_BUILDER_HPP_
 #define _BOARDGAMES_GAMES_GAME_BUILDER_HPP_
 
-#include <gtkmm/box.h>
 #include <gtkmm/label.h>
 #include <gtkmm/button.h>
 
 #include "common/types.hpp"
 #include "common/configuration.hpp"
 #include "interface/board.hpp"
+#include "interface/menu.hpp"
 #include "window/game_window.hpp"
 
 using Gtk::VBox;
 using Gtk::Button;
 using BoardGames::Board;
+using BoardGames::Menu;
 
 using BoardGames::GameWindow;
 using BoardGames::Configuration::GameTitles;

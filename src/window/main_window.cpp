@@ -43,7 +43,13 @@ BoardGames::MainWindow::MainWindow() {
   show_all_children();
 }
 
-BoardGames::MainWindow::~MainWindow() {}
+BoardGames::MainWindow::~MainWindow() {
+  delete vertical_layout_;
+  delete header_label_;
+  vector<Button*>::iterator it;
+  for (it = buttons_.begin(); it < buttons_.end(); it++)
+    delete (*it);
+}
 
 void BoardGames::MainWindow::GameSelected(GameType selected_game) {
   BoardGames::Application::GetApplicationInstance()->add_window(
