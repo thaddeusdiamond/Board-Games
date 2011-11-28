@@ -28,7 +28,6 @@ namespace BoardGames {
    * This class represents the in-game options listed below the main game
    * board
    **/
-  /// @todo   Dude, you gotta implement a version of this from the GameBuilder
   class Menu : public Gtk::VBox {
     /** @todo    Add testing to Menu class **/
    public:
