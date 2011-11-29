@@ -4,15 +4,13 @@ TESTS += interface-test
 
 # relative to $(TOP), i.e. $(LOWERC_DIR)/*.cc
 INTERFACE_SRCS := interface/board.cpp interface/tile.cpp interface/menu.cpp
+INTERFACE_EXECUTABLES :=
 
 # Set makefile template specific vars
 UPPERC_DIR := INTERFACE
 LOWERC_DIR := interface
 
-EXTRA_TEST_OBJS :=
-
-EXECUTABLE :=
-EXECUTABLE_SRCS := 
+TEST_OBJS :=
 EXECUTABLE_OBJS :=
 
 include $(MAKEFILE_TEMPLATE)

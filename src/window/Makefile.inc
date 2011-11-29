@@ -6,13 +6,14 @@ TESTS += window-test
 WINDOW_SRCS := window/main_window.cpp \
                window/game_window.cpp \
                window/window_factory.cpp
+WINDOW_EXECUTABLES :=
 
 # Set makefile template specific vars
 UPPERC_DIR := WINDOW
 LOWERC_DIR := window
-EXECUTABLE :=
+
+TEST_OBJS :=
 EXECUTABLE_OBJS :=
-EXTRA_TEST_OBJS :=
 
 include $(MAKEFILE_TEMPLATE)
 

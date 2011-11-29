@@ -5,15 +5,13 @@ TESTS += games-test
 # relative to $(TOP), i.e. $(LOWERC_DIR)/*.cc
 # We keep this as a wildcard so that anyone can add a game implementation
 GAMES_SRCS := games/*.cpp
+GAMES_EXECUTABLES :=
 
 # Set makefile template specific vars
 UPPERC_DIR := GAMES
 LOWERC_DIR := games
 
-EXTRA_TEST_OBJS :=
-
-EXECUTABLE :=
-EXECUTABLE_SRCS := 
+TEST_OBJS :=
 EXECUTABLE_OBJS :=
 
 include $(MAKEFILE_TEMPLATE)

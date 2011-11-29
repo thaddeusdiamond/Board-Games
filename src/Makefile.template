@@ -1,8 +1,11 @@
 # Build files only if they exist.
 $(UPPERC_DIR)_SRCS := $(wildcard $($(UPPERC_DIR)_SRCS))
+$(UPPERC_DIR)_EXECUTABLES := $(wildcard $($(UPPERC_DIR)_EXECUTABLES))
+
 $(UPPERC_DIR)_OBJS := $(patsubst %.cpp, $(OBJDIR)/%.o, $($(UPPERC_DIR)_SRCS))
-ifneq ($(EXECUTABLE),)
-  $(UPPERC_DIR)_DEPLOY := $(BINDIR)/$(EXECUTABLE)
+ifneq ($($(UPPERC_DIR)_EXECUTABLES),)
+  $(UPPERC_DIR)_DEPLOY := $(foreach EXEC, $($(UPPERC_DIR)_EXECUTABLES), $(BINDIR)/$(EXEC))
+  $(UPPERC_DIR)_DEPLOY := $(patsubst $(BINDIR)/$(LOWERC_DIR)/%.cpp, $(BINDIR)/%, $($(UPPERC_DIR)_DEPLOY))
 else
   $(UPPERC_DIR)_DEPLOY := 
 endif
@@ -30,15 +33,14 @@ $(OBJDIR)/$(LOWERC_DIR)/%unit_test.o: $(LOWERC_DIR)/%unit_test.cpp
 	$(V)$(CXX) $(CXXFLAGS) $(MDFLAGS) -o $@ -c $<
 
 $(BINDIR)/$(LOWERC_DIR)/%unit_test: $($(UPPERC_DIR)_TEST_OBJS) \
-                                    $($(UPPERC_DIR)_OBJS) $(EXTRA_TEST_OBJS)
+                                    $($(UPPERC_DIR)_OBJS) $(TEST_OBJS)
 	@echo + ld $@
 	@mkdir -p $(@D)
 	@mkdir -p $(patsubst $(BINDIR)%, $(LOGDIR)%, $(@D))
 	$(V)$(CXX) -o $@ $^ $(LDFLAGS)
 
-ifneq ($(EXECUTABLE),)
-  $(BINDIR)/$(EXECUTABLE): $(EXECUTABLE_SRCS) $(EXECUTABLE_OBJS) \
-                           $($(UPPERC_DIR)_OBJS)
+ifneq ($($(UPPERC_DIR)_EXECUTABLES),)
+  $(BINDIR)/%: $(LOWERC_DIR)/%.cpp $(EXECUTABLE_OBJS) $($(UPPERC_DIR)_OBJS)
 	  @echo + ld $@
 	  @mkdir -p $(@D)
 	  $(V)$(CXX) -o $@ $^ $(CXXFLAGS) $(LDFLAGS)
