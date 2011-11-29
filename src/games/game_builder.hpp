@@ -17,11 +17,16 @@
 #include <gtkmm/label.h>
 #include <gtkmm/button.h>
 
-#include "common/types.hpp"
-#include "common/configuration.hpp"
 #include "interface/board.hpp"
 #include "interface/menu.hpp"
 #include "window/game_window.hpp"
+
+#include "common/types.hpp"
+#include "common/configuration.hpp"
+
+#include "games/game.hpp"
+#include "games/gomoku.hpp"
+#include "games/tic_tac_toe.hpp"
 
 using Gtk::VBox;
 using Gtk::Button;
@@ -32,7 +37,11 @@ using BoardGames::Window::GameWindow;
 
 using Games::Configuration::GameTitles;
 using Games::Configuration::TIC_TAC_TOE;
-using Games::Configuration::SUDOKU;
+using Games::Configuration::GOMOKU;
+
+using Games::Game;
+using Games::SampleGames::Gomoku;
+using Games::SampleGames::TicTacToe;
 
 /**
  * @namespace Games

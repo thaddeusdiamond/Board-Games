@@ -28,4 +28,6 @@ Window* BoardGames::Window::WindowFactory::CreateFromGameType(GameType game) {
     default:
       return GameBuilder::BuildWindowFromGameType(game);
   }
+
+  return NULL;
 }

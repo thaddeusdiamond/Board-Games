@@ -40,3 +40,17 @@ Tile* BoardGames::Interface::Board::tile(int row, int col) {
 
   return tiles_[row][col];
 }
+
+bool BoardGames::Interface::Board::AttachTileHandlers(Game* game) {
+  if (game == NULL)
+    return false;
+
+  for (int i = 0; i < rows_; i++) {
+    for (int j = 0; j < cols_; j++) {
+      tile(i, j)->signal_clicked().connect(
+        sigc::bind<int, int>(sigc::mem_fun(*game, &Game::OnTileClicked), i, j));
+    }
+  }
+
+  return true;
+}

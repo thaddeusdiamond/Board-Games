@@ -45,7 +45,7 @@ namespace Games {
      **/
     enum {
       TIC_TAC_TOE = 0,
-      SUDOKU      = 1,
+      GOMOKU      = 1,
       ALL_GAMES   = 2,
     };
 
@@ -53,7 +53,7 @@ namespace Games {
      * Here we also enumerate the game types in an iterable
      * container so that we can make buttons, etc.
      **/
-    static const GameType GameTypes[] = { TIC_TAC_TOE, SUDOKU, ALL_GAMES };
+    static const GameType GameTypes[] = { TIC_TAC_TOE, GOMOKU, ALL_GAMES };
 
     /**
      * We define a static list of window titles based on what option was
@@ -61,7 +61,7 @@ namespace Games {
      **/
     static const string GameTitles[] = {
       "Tic-Tac-Toe",
-      "Sudoku",
+      "Gomoku",
       "All Sorts of Games!",
     };
   }

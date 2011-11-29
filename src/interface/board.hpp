@@ -14,8 +14,10 @@
 
 #include <gtkmm/table.h>
 #include "interface/tile.hpp"
+#include "games/game.hpp"
 
 using BoardGames::Interface::Tile;
+using Games::Game;
 
 /**
  * @namespace BoardGames
@@ -49,6 +51,17 @@ namespace BoardGames {
        * The board destructor is responsible for freeing all tiles it created
        **/
       ~Board();
+     
+      /**
+       * The AttachTileHandlers() method takes an arbitrary game and binds a
+       * tile handler to each tile in the grid.  This allows the game to be
+       * played.
+       *
+       * @param      game      The Game to be dispatched at runtime to play
+       *
+       * @returns    True if attaching succeeded, false otherwise.
+       **/
+      bool AttachTileHandlers(Game* game);
 
       /**
        * Accessor method for tiles on a board
@@ -59,6 +72,16 @@ namespace BoardGames {
        * @returns A pointer to the tile if it exists, NULL otherwise
        **/
       Tile* tile(int row, int col);
+
+      /**
+       * Accessor method for height
+       **/
+      int height() { return rows_; }
+
+      /**
+       * Accessor method for width
+       **/
+      int width() { return cols_; }
 
      private:
       /**

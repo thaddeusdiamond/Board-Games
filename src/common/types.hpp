@@ -32,6 +32,18 @@ namespace BoardGames {
      * in the configuration
      **/
     typedef int GameType;
+
+    /**
+     * A player is also a simple enumerable int.  The actual player enums are
+     * defined in each Game class
+     **/
+    typedef int Player;
+
+    /**
+     * A game state is also a simple enumerable int.  The actual game state
+     * enums are defined in each Game class
+     **/
+    typedef int GameState;
   }
 }
 

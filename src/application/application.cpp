@@ -41,6 +41,9 @@ Window* BoardGames::Application::Application::window(int index) {
 }
 
 void BoardGames::Application::Application::add_window(Window::Window* window) {
+  if (window == NULL)
+    exit(EXIT_FAILURE);    /// @todo We should really have a "Die" macro w/error
+
   for (int i = 0; i < MAXIMUM_WINDOWS; i++) {
     if (active_windows_[i] == NULL) {
       active_windows_[i] = window;
