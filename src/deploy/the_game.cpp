@@ -11,7 +11,7 @@
  **/
 
 #include <gtkmm/main.h>
-#include "common/configuration.hpp"
+#include "games/configuration.hpp"
 #include "application/application.hpp"
 
 int main(int argc, char* argv[]) {

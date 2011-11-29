@@ -11,10 +11,8 @@
 
 #include "window/main_window.hpp"
 #include "application/application.hpp"
-#include "games/game_factory.hpp"
 #include "window/window_factory.hpp"
 
-using Games::GameFactory;
 using BoardGames::Window::WindowFactory;
 
 BoardGames::Window::MainWindow::MainWindow() {
@@ -23,21 +21,15 @@ BoardGames::Window::MainWindow::MainWindow() {
   set_border_width(WINDOW_PADDING);
 
   // Retrieve the total games from the generic GameFactory
-  buttons_ = GameFactory::CreateGameChoices(this);
+  options_ = WindowFactory::CreateGameChoicesMenu(this);
 
   vertical_layout_ = new VBox();
-  vertical_layout_->set_size_request(300, (buttons_.size() + 1) * 50);
+  vertical_layout_->set_size_request(300, (options_->length() + 1) * 50);
 
   // Set the program header
   header_label_ = new Label("Please Select A Game...");
   vertical_layout_->pack_start(*header_label_);
-
-  // Add the buttons to select the correct games
-  vector<Button*>::iterator it;
-  for (it = buttons_.begin(); it < buttons_.end(); it++) {
-    vertical_layout_->pack_start(**it);
-    (*it)->show();
-  }
+  vertical_layout_->pack_start(*options_);
 
   add(*vertical_layout_);
   show_all_children();
@@ -46,9 +38,7 @@ BoardGames::Window::MainWindow::MainWindow() {
 BoardGames::Window::MainWindow::~MainWindow() {
   delete vertical_layout_;
   delete header_label_;
-  vector<Button*>::iterator it;
-  for (it = buttons_.begin(); it < buttons_.end(); it++)
-    delete (*it);
+  delete options_;
 }
 
 void BoardGames::Window::MainWindow::GameSelected(GameType selected_game) {

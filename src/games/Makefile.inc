@@ -3,8 +3,8 @@ OBJDIRS += games
 TESTS += games-test
 
 # relative to $(TOP), i.e. $(LOWERC_DIR)/*.cc
-GAMES_SRCS := games/game_factory.cpp games/game_builder.cpp \
-              games/gomoku.cpp games/tic_tac_toe.cpp
+# We keep this as a wildcard so that anyone can add a game implementation
+GAMES_SRCS := games/*.cpp
 
 # Set makefile template specific vars
 UPPERC_DIR := GAMES

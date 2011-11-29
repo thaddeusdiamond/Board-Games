@@ -17,13 +17,12 @@
 #include <gtkmm/label.h>
 #include <gtkmm/button.h>
 
+#include "common/types.hpp"
 #include "interface/board.hpp"
 #include "interface/menu.hpp"
 #include "window/game_window.hpp"
 
-#include "common/types.hpp"
-#include "common/configuration.hpp"
-
+#include "games/configuration.hpp"
 #include "games/game.hpp"
 #include "games/gomoku.hpp"
 #include "games/tic_tac_toe.hpp"

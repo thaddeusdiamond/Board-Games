@@ -41,9 +41,15 @@ namespace BoardGames {
       explicit Menu();
 
       /**
-       * The Menu destructor is responsible for freeing all memory it initialized
+       * The Menu destructor is responsible for freeing all memory it creates
        **/
       ~Menu();
+
+      /**
+       * The length() method returns the number of widgets that this menu
+       * contains
+       **/
+      int length() { return widgets_.size(); }
 
       /**
        * pack_start() behaves exactly as the VBox's version does, with the

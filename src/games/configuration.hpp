@@ -10,8 +10,8 @@
  * on what has been coded (which games, etc.)
  **/
 
-#ifndef _BOARDGAMES_COMMON_CONFIGURATION_HPP_
-#define _BOARDGAMES_COMMON_CONFIGURATION_HPP_
+#ifndef _BOARDGAMES_GAMES_CONFIGURATION_HPP_
+#define _BOARDGAMES_GAMES_CONFIGURATION_HPP_
 
 #include <string>
 
@@ -67,4 +67,4 @@ namespace Games {
   }
 }
 
-#endif  // _BOARDGAMES_COMMON_CONFIGURATION_HPP_
+#endif  // _BOARDGAMES_GAMES_CONFIGURATION_HPP_

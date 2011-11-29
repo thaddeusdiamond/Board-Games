@@ -20,6 +20,7 @@
 
 #include "common/types.hpp"
 #include "window/window.hpp"
+#include "interface/menu.hpp"
 
 using std::vector;
 using Gtk::Button;
@@ -27,6 +28,7 @@ using Gtk::VBox;
 using Gtk::Label;
 
 using BoardGames::Types::GameType;
+using BoardGames::Interface::Menu;
 
 /**
  * @namespace BoardGames
@@ -79,7 +81,7 @@ namespace BoardGames {
        * The MainWindow keeps track of a set of buttons available to be clicked
        * that will launch a specified game
        **/
-      vector<Button*> buttons_;
+      Menu* options_;
     };
   }
 }

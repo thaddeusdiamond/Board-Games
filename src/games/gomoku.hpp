@@ -12,10 +12,24 @@
 #ifndef _BOARDGAMES_GAMES_GOMOKU_HPP_
 #define _BOARDGAMES_GAMES_GOMOKU_HPP_
 
+#include <gtkmm/style.h>
+#include <gtkmm/label.h>
+
+#include <string>
+
+#include "common/types.hpp"
 #include "games/game.hpp"
 #include "interface/board.hpp"
 
+using Gtk::Style;
+using Gtk::Label;
+
+using std::string;
+
+using BoardGames::Types::Player;
+using BoardGames::Types::GameState;
 using BoardGames::Interface::Board;
+using BoardGames::Interface::Menu;
 
 /**
  * @namespace Games
@@ -39,17 +53,25 @@ namespace Games {
        * A Gomoku constructor takes a board object and a label to update
        * with instructions, and then initializes the state of the board
        **/
-      Gomoku(Board* board, Label* directive)
-        : board_(board), directive_(directive) {}
+      explicit Gomoku()
+        : board_(new Board(15, 15, 360, 360)), header_(new Label()),
+          options_(NULL) {}
 
       /**
        * The Gomoku destructor must free all memory it has aggregated.
        **/
-      virtual ~Gomoku() {}
+      virtual ~Gomoku() {
+        delete board_;
+        delete header_;
+        delete options_;
+      }
 
-      virtual void OnTileClicked(int row, int col) {};
-      virtual void CompleteTurn() {};
-      virtual void EndGame() {}
+      virtual void OnTileClicked(int row, int col) {}
+      virtual void CompleteTurn() {}
+      virtual void ClearTheBoard() {}
+      virtual Label* header()   { return header_;  }
+      virtual Board* board()    { return board_;   }
+      virtual Menu*  options()  { return options_; }
 
      private:
       /**
@@ -62,7 +84,12 @@ namespace Games {
        * The game keeps track of the header where it can output directives
        * to
        **/
-      Label* directive_;
+      Label* header_;
+
+      /**
+       * The game keeps track of a set of in-game options
+       **/
+      Menu* options_;
     };
   }
 }

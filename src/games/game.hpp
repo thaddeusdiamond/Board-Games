@@ -13,6 +13,14 @@
 #ifndef _BOARDGAMES_GAMES_GAME_HPP_
 #define _BOARDGAMES_GAMES_GAME_HPP_
 
+#include <gtkmm/label.h>
+#include <gtkmm/table.h>
+#include <gtkmm/box.h>
+
+using Gtk::Label;
+using Gtk::Table;
+using Gtk::VBox;
+
 /**
  * @namespace Games
  **/
@@ -48,10 +56,27 @@ namespace Games {
     virtual void CompleteTurn() = 0;
 
     /**
-     * The EndGame() method describes clean-up to be performed when the game is
-     * over
+     * Every game must implement a ClearTheBoard() method so that the user can
+     * restart the game without having to reset the whole set of options
+     * Although it can't strictly be enforced that one of the options actually
+     * link to this, it is a recommended practice that you do this.
      **/
-    virtual void EndGame() = 0;
+    virtual void ClearTheBoard() = 0;
+
+    /**
+     * Accessor method for the game's header (can be NULL)
+     **/
+    virtual Label* header() = 0;
+
+    /**
+     * Accessor method for the game's board (can NOT be NULL)
+     **/
+    virtual Table* board() = 0;
+
+    /**
+     * Accessor method for the game's options menu (can be NULL)
+     **/
+    virtual VBox* options() = 0;
   };
 }
 

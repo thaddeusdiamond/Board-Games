@@ -9,16 +9,7 @@
  * Implementation of the WindowFactory class using Factory DP
  **/
 
-#include "common/configuration.hpp"
-#include "games/game_builder.hpp"
-#include "window/main_window.hpp"
 #include "window/window_factory.hpp"
-
-using BoardGames::Window::Window;
-using BoardGames::Window::MainWindow;
-
-using Games::GameBuilder;
-using Games::Configuration::ALL_GAMES;
 
 Window* BoardGames::Window::WindowFactory::CreateFromGameType(GameType game) {
   switch (game) {
@@ -30,4 +21,18 @@ Window* BoardGames::Window::WindowFactory::CreateFromGameType(GameType game) {
   }
 
   return NULL;
+}
+
+Menu* BoardGames::Window::WindowFactory::CreateGameChoicesMenu(
+    MainWindow* window) {
+  Menu* options = new Menu();
+  for (int i = 0; i < GAMES_AVAILABLE; i++) {
+    Button* game_button = new Button(GameTitles[GameTypes[i]]);
+    game_button->signal_clicked().connect(
+        sigc::bind<GameType>(sigc::mem_fun(*window, &MainWindow::GameSelected),
+                             static_cast<GameType>(GameTypes[i])));
+    options->pack_start(game_button);
+  }
+
+  return options;
 }

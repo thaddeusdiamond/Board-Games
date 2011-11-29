@@ -11,19 +11,18 @@
 
 #include "window/game_window.hpp"
 
-BoardGames::Window::GameWindow::GameWindow(string game_title, Label* header,
-                                           Board* board, Menu* options)
-    : layout_(new VBox()), header_(header), board_(board), options_(options) {
+BoardGames::Window::GameWindow::GameWindow(string game_title, Game* game)
+    : layout_(new VBox()), game_(game) {
   // Every game needs a board, otherwise exit
-  if (board_ == NULL)
+  if (game->board() == NULL)
     return;
 
   // Initialize the position of the elements
-  if (header_ != NULL)
-    layout_->pack_start(*header_);
-  layout_->pack_start(*board_);
-  if (options_ != NULL)
-    layout_->pack_start(*options_);
+  if (game->header() != NULL)
+    layout_->pack_start(*game->header());
+  layout_->pack_start(*game->board());
+  if (game->options() != NULL)
+    layout_->pack_start(*game->options());
 
   set_title(game_title);
   set_border_width(WINDOW_PADDING);
@@ -33,8 +32,6 @@ BoardGames::Window::GameWindow::GameWindow(string game_title, Label* header,
 }
 
 BoardGames::Window::GameWindow::~GameWindow() {
-  delete board_;
   delete layout_;
-  delete header_;
-  delete options_;
+  delete game_;
 }

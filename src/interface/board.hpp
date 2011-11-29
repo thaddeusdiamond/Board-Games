@@ -51,7 +51,7 @@ namespace BoardGames {
        * The board destructor is responsible for freeing all tiles it created
        **/
       ~Board();
-     
+
       /**
        * The AttachTileHandlers() method takes an arbitrary game and binds a
        * tile handler to each tile in the grid.  This allows the game to be

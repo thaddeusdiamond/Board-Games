@@ -17,15 +17,13 @@
 #include <gtkmm/label.h>
 #include <string>
 
-#include "interface/board.hpp"
-#include "interface/menu.hpp"
 #include "window/window.hpp"
+#include "games/game.hpp"
 
 using std::string;
 using Gtk::Label;
 using Gtk::VBox;
-using BoardGames::Interface::Board;
-using BoardGames::Interface::Menu;
+using Games::Game;
 
 /**
  * @namespace BoardGames
@@ -48,7 +46,7 @@ namespace BoardGames {
        * A constructor for a GameWindow initializes the objects relevant to
        * that game
        **/
-      GameWindow(string game_title, Label* header, Board* board, Menu* options);
+      GameWindow(string game_title, Game* game);
 
       /**
        * The MainWindow destructor is responsible for freeing all widgets it
@@ -63,19 +61,9 @@ namespace BoardGames {
       VBox* layout_;
 
       /**
-       * ...a label to present the user pertinent information...
+       * Every game window must include the actual game object
        **/
-      Label* header_;
-
-      /**
-       * Every game window must include a board to play the game on...
-       **/
-      Board* board_;
-
-      /**
-       * ... and a vertical box to represent the menu options below.
-       **/
-      Menu* options_;
+      Game* game_;
     };
   }
 }
