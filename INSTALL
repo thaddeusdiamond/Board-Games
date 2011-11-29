@@ -11,5 +11,9 @@ Three directories will be created: bin/, obj/ and logs/.
 
 Running the Demo
 ================
-// TODO(Thad): Tell how to run each individual program once the programs
-// are able to be executed.
+In order to run the game you want to, from the root directory simply type:
+    $ bin/[GAME_NAME]
+    $ bin/Sudoku        # This will run Sudoku
+
+To run the option selector (so that you may choose among the games) please run:
+    $ bin/TheGame

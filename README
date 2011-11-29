@@ -4,7 +4,18 @@ Yale University
 
 About This Project
 ==================
-TODO(Thad)
+My project seeks to provide a modularized framework for developing games that
+share several common structures.  Obviously, the scope of this project must be
+appropriately narrow in scope, so I have chosen to limit this to two-dimensional
+grid-based games such as Tic-Tac-Toe and Gomoku.  Game developers then
+can merely contribute a tailored game board to the GameBuilder and modify the
+configuration file in order to notify the application that a new game is
+available to be played.
+
+The purpose of this project is to become acquainted with the development of a
+basic platform using big-scale software design patterns and real-world
+development tools.  These tools are essential for allowing a team of several
+developers to work on a project collaboratively at the same time.
 
 Directory Structure
 ===================
@@ -27,13 +38,11 @@ and can be run from within the src directory using either:
 or:
    $ make [DirectoryName]Test   # Makes only tests for a specific directory
 
-Links
-=====
-TODO(Thad)
 
 Contact
 =======
-TODO(Thad)
+Thaddeus Diamond, Project Lead        - diamond@cs.yale.edu
+Professor Michael Fischer, Teacher    - fischer@cs.yale.edu
 
 License
 =======
