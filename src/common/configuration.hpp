@@ -21,11 +21,11 @@ using BoardGames::Types::GameType;
 using std::string;
 
 /**
- * @namespace BoardGames
+ * @namespace Games
  **/
-namespace BoardGames {
+namespace Games {
   /**
-   * @namespace BoardGames::Configuration
+   * @namespace Games::Configuration
    * @brief     The current configuration in regards to which games supported
    *
    * Creating a configuration namespace nested inside of the BoardGames

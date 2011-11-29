@@ -11,8 +11,8 @@
 
 #include "window/game_window.hpp"
 
-BoardGames::GameWindow::GameWindow(string game_title, Label* header,
-                                   Board* board, Menu* options)
+BoardGames::Window::GameWindow::GameWindow(string game_title, Label* header,
+                                           Board* board, Menu* options)
     : layout_(new VBox()), header_(header), board_(board), options_(options) {
   // Every game needs a board, otherwise exit
   if (board_ == NULL)
@@ -32,7 +32,7 @@ BoardGames::GameWindow::GameWindow(string game_title, Label* header,
   show_all_children();
 }
 
-BoardGames::GameWindow::~GameWindow() {
+BoardGames::Window::GameWindow::~GameWindow() {
   delete board_;
   delete layout_;
   delete header_;

@@ -11,8 +11,8 @@
 
 #include "interface/tile.hpp"
 
-BoardGames::Tile::Tile() {
+BoardGames::Interface::Tile::Tile() {
 }
 
-BoardGames::Tile::~Tile() {
+BoardGames::Interface::Tile::~Tile() {
 }

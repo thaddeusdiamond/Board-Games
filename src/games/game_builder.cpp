@@ -11,7 +11,8 @@
 
 #include "games/game_builder.hpp"
 
-GameWindow* BoardGames::GameBuilder::BuildWindowFromGameType(GameType game) {
+GameWindow* Games::GameBuilder::BuildWindowFromGameType(
+    GameType game) {
   /// @todo Put in actual gameplay via modularized Strategy DP
   Label *header, *filler;
   Board* board;
@@ -45,7 +46,7 @@ GameWindow* BoardGames::GameBuilder::BuildWindowFromGameType(GameType game) {
       header = new Label("Player 1 Make Your Move...");  // Initial board header
       board = new Board(3, 3, 270, 270);                 // 3x3 (360px by 360px)
       options = new Menu();
-  
+
       filler = new Label();
       options->pack_start(filler);
 

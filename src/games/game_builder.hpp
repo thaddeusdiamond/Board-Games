@@ -25,18 +25,23 @@
 
 using Gtk::VBox;
 using Gtk::Button;
-using BoardGames::Board;
-using BoardGames::Menu;
 
-using BoardGames::GameWindow;
-using BoardGames::Configuration::GameTitles;
-using BoardGames::Configuration::TIC_TAC_TOE;
-using BoardGames::Configuration::SUDOKU;
+using BoardGames::Interface::Board;
+using BoardGames::Interface::Menu;
+using BoardGames::Window::GameWindow;
+
+using Games::Configuration::GameTitles;
+using Games::Configuration::TIC_TAC_TOE;
+using Games::Configuration::SUDOKU;
 
 /**
- * @namespace BoardGames
+ * @namespace Games
+ * @brief     Responsible for holding developed games
+ *
+ * The games namespace is responsible for containing games developed by
+ * application programmers on top of the general BoardGames framework.
  **/
-namespace BoardGames {
+namespace Games {
   /**
    * @class GameBuilder
    * @brief Game window builder

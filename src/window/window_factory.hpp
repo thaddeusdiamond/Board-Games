@@ -23,33 +23,38 @@ using BoardGames::Types::GameType;
  **/
 namespace BoardGames {
   /**
-   * @class WindowFactory
-   * @brief A factory for abstractly creating an arbitrary window
-   *
-   * Based on whether this is the main menu, the game itself, or something
-   * else entirely we want the WindowFactory to create the window without
-   * the application having to be aware.
+   * @namespace BoardGames::Window
    **/
-  class WindowFactory {
-   public:
+  namespace Window {
     /**
-     * The CreateFromGameType() method takes an enumerated
-     * @ref Types::GameType and returns which Window should be
-     * created based on it.
+     * @class WindowFactory
+     * @brief A factory for abstractly creating an arbitrary window
+     *
+     * Based on whether this is the main menu, the game itself, or something
+     * else entirely we want the WindowFactory to create the window without
+     * the application having to be aware.
      **/
-    static Window* CreateFromGameType(GameType game);
+    class WindowFactory {
+     public:
+      /**
+       * The CreateFromGameType() method takes an enumerated
+       * @ref Types::GameType and returns which Window should be
+       * created based on it.
+       **/
+      static Window* CreateFromGameType(GameType game);
 
-   private:
-    /**
-     * The WindowFactory constructor is hidden to comply with the Factory DP
-     **/
-    explicit WindowFactory() {}
+     private:
+      /**
+       * The WindowFactory constructor is hidden to comply with the Factory DP
+       **/
+      explicit WindowFactory() {}
 
-    /**
-     * The WindowFactory destructor is hidden because it is simply a Factory
-     **/
-    ~WindowFactory() {}
-  };
+      /**
+       * The WindowFactory destructor is hidden because it is simply a Factory
+       **/
+      ~WindowFactory() {}
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_WINDOW_WINDOW_FACTORY_HPP_

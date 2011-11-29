@@ -11,7 +11,7 @@
 
 #include "interface/board.hpp"
 
-BoardGames::Board::Board(int rows, int cols, int height, int width)
+BoardGames::Interface::Board::Board(int rows, int cols, int height, int width)
     : rows_(rows), cols_(cols) {
   tiles_ = new Tile**[rows_];
   for (int i = 0; i < rows_; i++) {
@@ -24,7 +24,7 @@ BoardGames::Board::Board(int rows, int cols, int height, int width)
   }
 }
 
-BoardGames::Board::~Board() {
+BoardGames::Interface::Board::~Board() {
   for (int i = 0; i < rows_; i++) {
     for (int j = 0; j < cols_; j++)
       delete tiles_[i][j];
@@ -34,7 +34,7 @@ BoardGames::Board::~Board() {
   delete[] tiles_;
 }
 
-Tile* BoardGames::Board::tile(int row, int col) {
+Tile* BoardGames::Interface::Board::tile(int row, int col) {
   if (row >= rows_ || col >= cols_)
     return NULL;
 

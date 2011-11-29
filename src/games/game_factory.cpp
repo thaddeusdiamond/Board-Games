@@ -11,7 +11,8 @@
 
 #include "games/game_factory.hpp"
 
-vector<Button*> BoardGames::GameFactory::CreateGameChoices(MainWindow* window) {
+vector<Button*> Games::GameFactory::CreateGameChoices(
+    MainWindow* window) {
   vector<Button*> options;
   for (int i = 0; i < GAMES_AVAILABLE; i++) {
     Button* game_button = new Button(GameTitles[GameTypes[i]]);

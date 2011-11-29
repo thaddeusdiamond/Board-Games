@@ -18,9 +18,9 @@ int main(int argc, char* argv[]) {
   Gtk::Main kit(argc, argv);
 
   // TheGame allows the user to play any game
-  BoardGames::Application* application =
-    BoardGames::Application::GetApplicationInstance();
-  application->InitializeApplication(BoardGames::Configuration::ALL_GAMES);
+  BoardGames::Application::Application* application =
+    BoardGames::Application::Application::GetApplicationInstance();
+  application->InitializeApplication(Games::Configuration::ALL_GAMES);
 
   Gtk::Main::run();
 

@@ -33,50 +33,55 @@ using BoardGames::Types::GameType;
  **/
 namespace BoardGames {
   /**
-   * @class MainWindow
-   * @brief The main board game window
-   *
-   * This is the main screen that allows us to choose which game to play
+   * @namespace BoardGames::Window
    **/
-  class MainWindow : public BoardGames::Window {
-    /** @todo    Add testing to MainWindow class **/
-   public:
+  namespace Window {
     /**
-     * A constructor for a MainWindow initializes the buttons relevant to
-     * that game
-     **/
-    explicit MainWindow();
-
-    /**
-     * The MainWindow destructor is responsible for freeing all widgets it
-     * allocated during its lifecycle
-     **/
-    virtual ~MainWindow();
-
-    /**
-     * When a specified button is clicked, handle the event
+     * @class MainWindow
+     * @brief The main board game window
      *
-     * @param   selected_game   Which button was selected/what game to launch
+     * This is the main screen that allows us to choose which game to play
      **/
-    virtual void GameSelected(GameType selected_game);
+    class MainWindow : public BoardGames::Window::Window {
+      /** @todo    Add testing to MainWindow class **/
+     public:
+      /**
+       * A constructor for a MainWindow initializes the buttons relevant to
+       * that game
+       **/
+      explicit MainWindow();
 
-   private:
-    /**
-     * The MainWindow keeps a vertical box layout to position buttons
-     **/
-    VBox* vertical_layout_;
+      /**
+       * The MainWindow destructor is responsible for freeing all widgets it
+       * allocated during its lifecycle
+       **/
+      virtual ~MainWindow();
 
-    /**
-     * The MainWindow keeps a label describing the games available
-     **/
-    Label* header_label_;
+      /**
+       * When a specified button is clicked, handle the event
+       *
+       * @param   selected_game   Which button was selected/what game to launch
+       **/
+      virtual void GameSelected(GameType selected_game);
 
-    /**
-     * The MainWindow keeps track of a set of buttons available to be clicked
-     * that will launch a specified game
-     **/
-    vector<Button*> buttons_;
-  };
+     private:
+      /**
+       * The MainWindow keeps a vertical box layout to position buttons
+       **/
+      VBox* vertical_layout_;
+
+      /**
+       * The MainWindow keeps a label describing the games available
+       **/
+      Label* header_label_;
+
+      /**
+       * The MainWindow keeps track of a set of buttons available to be clicked
+       * that will launch a specified game
+       **/
+      vector<Button*> buttons_;
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_WINDOW_MAIN_WINDOW_HPP_

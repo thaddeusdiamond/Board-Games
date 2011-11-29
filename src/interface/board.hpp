@@ -15,60 +15,68 @@
 #include <gtkmm/table.h>
 #include "interface/tile.hpp"
 
-using BoardGames::Tile;
+using BoardGames::Interface::Tile;
 
 /**
  * @namespace BoardGames
  **/
 namespace BoardGames {
   /**
-   * @class Board
-   * @brief The physical game board
+   * @namespace BoardGames::Interface
+   * @brief     A namespace for holding interface components on a window
    *
-   * This is the game board with tiles arranged on it
+   * The interface namespace defines a set of interface components derived from
+   * the standard GTKMM library that control the output of the game on the
+   * screen
    **/
-  /// @todo If there's time, should we make one more level for namespaces?
-  ///       It would be based on the folder...
-  class Board : public Gtk::Table {
-    /** @todo    Add testing to Board class **/
-   public:
+  namespace Interface {
     /**
-     * The board constructor initializes a set of WxH widgets arranged
-     * in a grid of width and height specified
-     **/
-    explicit Board(int rows, int cols, int height, int width);
-
-    /**
-     * The board destructor is responsible for freeing all tiles it created
-     **/
-    ~Board();
-
-    /**
-     * Accessor method for tiles on a board
+     * @class Board
+     * @brief The physical game board
      *
-     * @param   row     Row location of the tile
-     * @param   col     Column location of the tile
-     *
-     * @returns A pointer to the tile if it exists, NULL otherwise
+     * This is the game board with tiles arranged on it
      **/
-    Tile* tile(int row, int col);
+    class Board : public Gtk::Table {
+      /** @todo    Add testing to Board class **/
+     public:
+      /**
+       * The board constructor initializes a set of WxH widgets arranged
+       * in a grid of width and height specified
+       **/
+      explicit Board(int rows, int cols, int height, int width);
 
-   private:
-    /**
-     * We represent the Tiles as a 2-D array of Tile pointers
-     **/
-    Tile*** tiles_;
+      /**
+       * The board destructor is responsible for freeing all tiles it created
+       **/
+      ~Board();
 
-    /**
-     * Maintain how many tiles high this board is
-     **/
-    int rows_;
+      /**
+       * Accessor method for tiles on a board
+       *
+       * @param   row     Row location of the tile
+       * @param   col     Column location of the tile
+       *
+       * @returns A pointer to the tile if it exists, NULL otherwise
+       **/
+      Tile* tile(int row, int col);
 
-    /**
-     * Maintain how many tiles wide this board is
-     **/
-    int cols_;
-  };
+     private:
+      /**
+       * We represent the Tiles as a 2-D array of Tile pointers
+       **/
+      Tile*** tiles_;
+
+      /**
+       * Maintain how many tiles high this board is
+       **/
+      int rows_;
+
+      /**
+       * Maintain how many tiles wide this board is
+       **/
+      int cols_;
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_INTERFACE_BOARD_HPP_

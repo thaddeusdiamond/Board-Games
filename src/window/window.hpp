@@ -20,31 +20,40 @@
  **/
 namespace BoardGames {
   /**
-   * All windows have a standard amount of padding
-   **/
-  static const int WINDOW_PADDING = 10;
-
-  /**
-   * @class Window
-   * @brief An inherited version of the GTK Window
+   * @namespace BoardGames::Window
+   * @brief     Manage windows available in the BoardGames framework
    *
-   * We create an extended version of a GTK window to allow for game-dependent
-   * decoration and runtime dispatching of user events via the Abstract Factory
-   * DP
+   * The window namespace contains all windows and mechanisms for creating
+   * windows (i.e. WindowFactory) inside of the game framework
    **/
-  class Window : public Gtk::Window {
-   public:
+  namespace Window {
     /**
-     * The Window constructor is responsible for initializing its contents
+     * All windows have a standard amount of padding
      **/
-    explicit Window() {}
+    static const int WINDOW_PADDING = 10;
 
     /**
-     * The Window destructor is responsible for freeing all memory it allocated
-     * during its lifecycle
+     * @class Window
+     * @brief An inherited version of the GTK Window
+     *
+     * We create an extended version of a GTK window to allow for game-dependent
+     * decoration and runtime dispatching of user events via the Abstract Factory
+     * DP
      **/
-    virtual ~Window() {}
-  };
+    class Window : public Gtk::Window {
+     public:
+      /**
+       * The Window constructor is responsible for initializing its contents
+       **/
+      explicit Window() {}
+
+      /**
+       * The Window destructor is responsible for freeing all memory it allocated
+       * during its lifecycle
+       **/
+      virtual ~Window() {}
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_WINDOW_WINDOW_HPP_

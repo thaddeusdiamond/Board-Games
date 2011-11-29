@@ -24,17 +24,17 @@
 
 using std::vector;
 using Gtk::Button;
-using BoardGames::MainWindow;
+using BoardGames::Window::MainWindow;
 using BoardGames::Types::GameType;
 
-using BoardGames::Configuration::GameTypes;
-using BoardGames::Configuration::GameTitles;
-using BoardGames::Configuration::GAMES_AVAILABLE;
+using Games::Configuration::GameTypes;
+using Games::Configuration::GameTitles;
+using Games::Configuration::GAMES_AVAILABLE;
 
 /**
- * @namespace BoardGames
+ * @namespace Games
  **/
-namespace BoardGames {
+namespace Games {
   /**
    * @class GameFactory
    * @brief A factory for abstractly creating game resources

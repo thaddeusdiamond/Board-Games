@@ -19,25 +19,30 @@
  **/
 namespace BoardGames {
   /**
-   * @class Tile
-   * @brief The individual game tile
-   *
-   * This class represents a single tile on the game board (inherited from
-   * a standard ToggleButton)
+   * @namespace BoardGames::Interface
    **/
-  class Tile : public Gtk::ToggleButton {
-    /** @todo    Add testing to Tile class **/
-   public:
+  namespace Interface {
     /**
-     * The Tile constructor initializes a null tile
+     * @class Tile
+     * @brief The individual game tile
+     *
+     * This class represents a single tile on the game board (inherited from
+     * a standard ToggleButton)
      **/
-    explicit Tile();
+    class Tile : public Gtk::ToggleButton {
+      /** @todo    Add testing to Tile class **/
+     public:
+      /**
+       * The Tile constructor initializes a null tile
+       **/
+      explicit Tile();
 
-    /**
-     * The Tile destructor is responsible for freeing all memory it initialized
-     **/
-    ~Tile();
-  };
+      /**
+       * The Tile destructor is responsible for freeing all memory it initialized
+       **/
+      ~Tile();
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_INTERFACE_TILE_HPP_

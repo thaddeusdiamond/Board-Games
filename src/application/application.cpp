@@ -11,34 +11,36 @@
 
 #include "application/application.hpp"
 
-BoardGames::Application* BoardGames::Application::application_instance_ = NULL;
+BoardGames::Application::Application*
+  BoardGames::Application::Application::application_instance_ = NULL;
 
-BoardGames::Application* BoardGames::Application::GetApplicationInstance() {
+BoardGames::Application::Application*
+  BoardGames::Application::Application::GetApplicationInstance() {
   if (application_instance_ == NULL)
     application_instance_ = new Application();
 
   return application_instance_;
 }
 
-BoardGames::Application::Application() {
-  active_windows_ = new Window*[MAXIMUM_WINDOWS];
+BoardGames::Application::Application::Application() {
+  active_windows_ = new Window::Window*[MAXIMUM_WINDOWS];
   for (int i = 0; i < MAXIMUM_WINDOWS; i++)
     active_windows_[i] = NULL;
 }
 
-BoardGames::Application::~Application() {
+BoardGames::Application::Application::~Application() {
   for (int i = 0; i < MAXIMUM_WINDOWS; i++)
     delete active_windows_[i];
 }
 
-Window* BoardGames::Application::window(int index) {
+Window* BoardGames::Application::Application::window(int index) {
   if (index > MAXIMUM_WINDOWS)
     return NULL;
 
   return active_windows_[index];
 }
 
-void BoardGames::Application::add_window(Window* window) {
+void BoardGames::Application::Application::add_window(Window::Window* window) {
   for (int i = 0; i < MAXIMUM_WINDOWS; i++) {
     if (active_windows_[i] == NULL) {
       active_windows_[i] = window;
@@ -50,7 +52,8 @@ void BoardGames::Application::add_window(Window* window) {
   }
 }
 
-bool BoardGames::Application::remove_window(int index, GdkEventAny* event) {
+bool BoardGames::Application::Application::remove_window(int index,
+                                                         GdkEventAny* event) {
   if (index > MAXIMUM_WINDOWS)
     return true;
 
@@ -68,7 +71,8 @@ bool BoardGames::Application::remove_window(int index, GdkEventAny* event) {
   return false;
 }
 
-bool BoardGames::Application::InitializeApplication(GameType game) {
+bool BoardGames::Application::Application::InitializeApplication(
+    GameType game) {
   add_window(WindowFactory::CreateFromGameType(game));
   return true;
 }

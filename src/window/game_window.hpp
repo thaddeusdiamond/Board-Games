@@ -24,55 +24,60 @@
 using std::string;
 using Gtk::Label;
 using Gtk::VBox;
-using BoardGames::Board;
-using BoardGames::Menu;
+using BoardGames::Interface::Board;
+using BoardGames::Interface::Menu;
 
 /**
  * @namespace BoardGames
  **/
 namespace BoardGames {
   /**
-   * @class GameWindow
-   * @brief An actual game window
-   *
-   * This is the game board that allows us to actually play a game
+   * @namespace BoardGames::Window
    **/
-  class GameWindow : public BoardGames::Window {
-    /** @todo    Add testing to GameWindow class **/
-   public:
+  namespace Window {
     /**
-     * A constructor for a GameWindow initializes the objects relevant to
-     * that game
+     * @class GameWindow
+     * @brief An actual game window
+     *
+     * This is the game board that allows us to actually play a game
      **/
-    GameWindow(string game_title, Label* header, Board* board, Menu* options);
+    class GameWindow : public BoardGames::Window::Window {
+      /** @todo    Add testing to GameWindow class **/
+     public:
+      /**
+       * A constructor for a GameWindow initializes the objects relevant to
+       * that game
+       **/
+      GameWindow(string game_title, Label* header, Board* board, Menu* options);
 
-    /**
-     * The MainWindow destructor is responsible for freeing all widgets it
-     * allocated during its lifecycle
-     **/
-    virtual ~GameWindow();
+      /**
+       * The MainWindow destructor is responsible for freeing all widgets it
+       * allocated during its lifecycle
+       **/
+      virtual ~GameWindow();
 
-   private:
-    /**
-     * The game's layout is represented as a vertical box layout
-     **/
-    VBox* layout_;
+     private:
+      /**
+       * The game's layout is represented as a vertical box layout
+       **/
+      VBox* layout_;
 
-    /**
-     * ...a label to present the user pertinent information...
-     **/
-    Label* header_;
+      /**
+       * ...a label to present the user pertinent information...
+       **/
+      Label* header_;
 
-    /**
-     * Every game window must include a board to play the game on...
-     **/
-    Board* board_;
+      /**
+       * Every game window must include a board to play the game on...
+       **/
+      Board* board_;
 
-    /**
-     * ... and a vertical box to represent the menu options below.
-     **/
-    Menu* options_;
-  };
+      /**
+       * ... and a vertical box to represent the menu options below.
+       **/
+      Menu* options_;
+    };
+  }
 }
 
 #endif  // _BOARDGAMES_WINDOW_GAME_WINDOW_HPP_

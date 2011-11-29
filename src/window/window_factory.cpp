@@ -14,12 +14,13 @@
 #include "window/main_window.hpp"
 #include "window/window_factory.hpp"
 
-using BoardGames::Configuration::ALL_GAMES;
-using BoardGames::Window;
-using BoardGames::MainWindow;
-using BoardGames::GameBuilder;
+using BoardGames::Window::Window;
+using BoardGames::Window::MainWindow;
 
-Window* BoardGames::WindowFactory::CreateFromGameType(GameType game) {
+using Games::GameBuilder;
+using Games::Configuration::ALL_GAMES;
+
+Window* BoardGames::Window::WindowFactory::CreateFromGameType(GameType game) {
   switch (game) {
     case ALL_GAMES:
       return new MainWindow();

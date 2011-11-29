@@ -9,15 +9,15 @@
  * Implementation of a game's main window
  **/
 
-#include "application/application.hpp"
 #include "window/main_window.hpp"
+#include "application/application.hpp"
 #include "games/game_factory.hpp"
 #include "window/window_factory.hpp"
 
-using BoardGames::GameFactory;
-using BoardGames::WindowFactory;
+using Games::GameFactory;
+using BoardGames::Window::WindowFactory;
 
-BoardGames::MainWindow::MainWindow() {
+BoardGames::Window::MainWindow::MainWindow() {
   // Set the basics up
   set_title("Board Game Demo");
   set_border_width(WINDOW_PADDING);
@@ -43,7 +43,7 @@ BoardGames::MainWindow::MainWindow() {
   show_all_children();
 }
 
-BoardGames::MainWindow::~MainWindow() {
+BoardGames::Window::MainWindow::~MainWindow() {
   delete vertical_layout_;
   delete header_label_;
   vector<Button*>::iterator it;
@@ -51,7 +51,7 @@ BoardGames::MainWindow::~MainWindow() {
     delete (*it);
 }
 
-void BoardGames::MainWindow::GameSelected(GameType selected_game) {
-  BoardGames::Application::GetApplicationInstance()->add_window(
+void BoardGames::Window::MainWindow::GameSelected(GameType selected_game) {
+  BoardGames::Application::Application::GetApplicationInstance()->add_window(
     WindowFactory::CreateFromGameType(selected_game));
 }
