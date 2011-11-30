@@ -49,8 +49,7 @@ void Games::SampleGames::TicTacToe::OnTileClicked(int row, int col) {
   tile_pressed->set_sensitive(false);
 
   // Make it a little prettier
-  Color* color = new Color(PLAYER_COLOR[player_]);
-  tile_pressed->modify_bg(Gtk::STATE_INSENSITIVE, *color);
+  tile_pressed->modify_bg(Gtk::STATE_INSENSITIVE, Color(PLAYER_COLOR[player_]));
 
   CompleteTurn();
 }
@@ -123,6 +122,7 @@ void Games::SampleGames::TicTacToe::CompleteTurn() {
   if (initial_player != NEITHER && i == board_->height())
     EndGame(winning_tiles);
 
+  // Update the game state
   if (game_state_ != GAME_OVER) {
     player_ = (player_ + 1) % NUMBER_OF_PLAYERS;
     game_state_ = (game_state_ + 1) % NUMBER_OF_PLAYERS;
@@ -137,7 +137,7 @@ void Games::SampleGames::TicTacToe::CompleteTurn() {
     }
   }
 
-  if (draw)
+  if (game_state_ != GAME_OVER && draw)
     header_->set_text(DRAW_DIRECTIVE);
   else
     header_->set_text(PLAYER_NAME[player_] + PLAYER_DIRECTIVE[game_state_]);
@@ -149,7 +149,7 @@ void Games::SampleGames::TicTacToe::EndGame(set<Tile*> winning_tiles) {
     for (int j = 0; j < board_->width(); j++) {
       if (board_state_[i][j] != NEITHER &&
           winning_tiles.find(board_->tile(i, j)) == winning_tiles.end())
-        board_->tile(i, j)->modify_bg(Gtk::STATE_INSENSITIVE, Color("white"));
+        board_->tile(i, j)->modify_bg(Gtk::STATE_INSENSITIVE, Color("gray"));
     }
   }
 

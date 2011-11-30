@@ -92,6 +92,10 @@ namespace Games {
         delete board_;
         delete header_;
         delete options_;
+
+        for (int i = 0; i < board_->height(); i++)
+          delete[] board_state_[i];
+        delete[] board_state_;
       }
 
       virtual void OnTileClicked(int row, int col);
